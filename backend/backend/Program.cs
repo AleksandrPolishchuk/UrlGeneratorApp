@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // DB Configuration
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-	options.UseSqlServer("");
+	options.UseSqlServer(builder.Configuration.GetConnectionString("local"));
 });
 
 builder.Services.AddControllers();
