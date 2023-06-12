@@ -27,13 +27,45 @@ namespace backend.Controllers
 			var newVideo = new VideoEntity()
 			{
 				Title = dto.Title,
-				Url = "hjvjcjrcccxfdvw"
+				Url = CreateUniqueUrl()
 			};
 
 			await _context.Videos.AddAsync(newVideo);
 			await _context.SaveChangesAsync();
 
 			return Ok(newVideo);
+		}
+
+		// Unique Url Generator function
+		private string CreateUniqueUrl()
+		{
+			var newRandomUrl = "";
+			Random rand = new Random();
+
+			var boolFlag = true;
+
+			while (boolFlag)
+			{
+				newRandomUrl = string.Empty;
+				for ( int i = 0; i < 10; i++)
+				{
+					var randomNum = rand.Next(1,9);
+					var randomChar1 = (char)rand.Next('a', 'z');
+					var randomChar2 = (char)rand.Next('A', 'Z');
+					newRandomUrl += randomChar2.ToString();
+					newRandomUrl += randomChar1.ToString();
+					newRandomUrl += randomNum.ToString();
+				}
+
+				var isDuplicate = _context.Videos.Any(q => q.Url == newRandomUrl);
+
+				if (!isDuplicate)
+				{
+					boolFlag = false;
+				}
+			}
+
+			return newRandomUrl;
 		}
 	}
 }
