@@ -47,7 +47,7 @@ namespace backend.Controllers
 			while (boolFlag)
 			{
 				newRandomUrl = string.Empty;
-				for ( int i = 0; i < 10; i++)
+				for ( int i = 0; i < 2; i++)
 				{
 					var randomNum = rand.Next(1,9);
 					var randomChar1 = (char)rand.Next('a', 'z');
