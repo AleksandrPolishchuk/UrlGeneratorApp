@@ -1,4 +1,5 @@
 ﻿using backend.Contex;
+using backend.Dtos;
 using backend.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,18 @@ namespace backend.Controllers
 		// CRUD
 
 		[HttpPost]
-		public async Task<ActionResult<VideoEntity>> CreateNewVideo()
+		public async Task<ActionResult<VideoEntity>> CreateNewVideo([FromBody]CreateVideoDto dto)
+		{
+			var newVideo = new VideoEntity()
+			{
+				Title = dto.Title,
+				Url = "hjvjcjrcccxfdvw"
+			};
+
+			await _context.Videos.AddAsync(newVideo);
+			await _context.SaveChangesAsync();
+
+			return Ok(newVideo);
+		}
 	}
 }
