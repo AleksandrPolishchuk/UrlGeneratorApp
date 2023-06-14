@@ -42,7 +42,21 @@ namespace backend.Controllers
 
 			return Ok(videos);
 		}
- 
+
+		[HttpGet]
+		[Route("{videoId}")]
+		public async Task<ActionResult<VideoEntity>> GetVideoById([FromRoute] long videoId)
+		{
+			var video = await _context.Videos.FirstOrDefaultAsync(q => q.Id == videoId);
+
+			if (video is null)
+			{
+				return NotFound("Video Not found");
+			}
+
+			return Ok(video);
+		}
+
 		// Unique Url Generator function
 		private string CreateUniqueUrl()
 		{
