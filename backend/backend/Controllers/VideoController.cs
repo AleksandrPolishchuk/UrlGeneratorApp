@@ -3,6 +3,7 @@ using backend.Dtos;
 using backend.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -18,9 +19,7 @@ namespace backend.Controllers
 			_context = context;
 		}
 
-
 		// CRUD
-
 		[HttpPost]
 		public async Task<ActionResult<VideoEntity>> CreateNewVideo([FromBody]CreateVideoDto dto)
 		{
@@ -36,6 +35,14 @@ namespace backend.Controllers
 			return Ok(newVideo);
 		}
 
+		[HttpGet]
+		public async Task<ActionResult<List<VideoEntity>>> GetAllVideos()
+		{
+			var videos = await _context.Videos.OrderByDescending(q => q.CreatedAt).ToListAsync();
+
+			return Ok(videos);
+		}
+ 
 		// Unique Url Generator function
 		private string CreateUniqueUrl()
 		{
