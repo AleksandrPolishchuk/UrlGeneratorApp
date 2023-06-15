@@ -25,7 +25,11 @@ const Home = () => {
           <AddCircle />
         </span>
       </div>
-      <div className="cards">Videos Cards</div>
+      <div className="cards">
+        {videos.map((item) => (
+          <div>{item.title}</div>
+        ))}
+      </div>
     </div>
   );
 };
