@@ -10,6 +10,7 @@ const Home = () => {
           <AddCircle />
         </span>
       </div>
+      <div className="cards">Videos Cards</div>
     </div>
   );
 };
