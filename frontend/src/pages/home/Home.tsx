@@ -15,6 +15,8 @@ const Home = () => {
       .catch((error) => alert(JSON.stringify(error)));
   }, []);
 
+  console.log(videos);
+
   return (
     <div className="home">
       <div className="heading">
