@@ -5,9 +5,11 @@ import { IVideo } from "../../types/global.typing";
 import { baseUrl } from "../../constants/url.constant";
 import axios from "axios";
 import moment from "moment";
+import { redirect } from "react-router-dom";
 
 const Home = () => {
   const [videos, setVideos] = useState<IVideo[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     axios
@@ -23,7 +25,7 @@ const Home = () => {
       <div className="heading">
         <h1>Videos List</h1>
         <span>
-          <AddCircle />
+          <AddCircle onClick={() => redirect("/add-video")} />
         </span>
       </div>
       <div className="cards">
