@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { IVideo } from "../../types/global.typing";
 import { baseUrl } from "../../constants/url.constant";
 import axios from "axios";
+import moment from "moment";
 
 const Home = () => {
   const [videos, setVideos] = useState<IVideo[]>([]);
@@ -31,7 +32,7 @@ const Home = () => {
             <div className="left">
               <div className="title">
                 <span>{item.title}</span>
-                <span className="time">{item.createdAt}</span>
+                <span className="time">{moment(item.createdAt).fromNow()}</span>
               </div>
               <div className="url">
                 <span>{item.url}</span>
