@@ -27,7 +27,23 @@ const Home = () => {
       </div>
       <div className="cards">
         {videos.map((item) => (
-          <div>{item.title}</div>
+          <div key={item.id} className="card">
+            <div className="left">
+              <div className="title">
+                <span>{item.title}</span>
+                <span className="time">{item.createdAt}</span>
+              </div>
+              <div className="url">
+                <span>{item.url}</span>
+              </div>
+            </div>
+            <div className="right">
+              <div className="btns">
+                <Edit />
+                <Delete />
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
