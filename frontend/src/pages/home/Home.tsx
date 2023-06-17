@@ -12,10 +12,12 @@ const Home = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get<IVideo[]>(baseUrl)
       .then((response) => setVideos(response.data))
-      .catch((error) => alert(JSON.stringify(error)));
+      .catch((error) => alert(JSON.stringify(error)))
+      .finally(() => setLoading(false));
   }, []);
 
   //  console.log(videos);

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, TextField } from "@mui/material";
-import "./edit-video.scss";
+import "./delete-video.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../../constants/url.constant";
