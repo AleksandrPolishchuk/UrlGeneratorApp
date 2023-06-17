@@ -1,39 +1,19 @@
-import { useState, useEffect } from "react";
-import { Button, TextField } from "@mui/material";
+import { useState } from "react";
+import { Button } from "@mui/material";
 import "./delete-video.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../../constants/url.constant";
-import { IVideo } from "../../types/global.typing";
 
 const DeleteVideo = () => {
-  const [title, setTitle] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const redirect = useNavigate();
   const { videoId } = useParams();
 
-  useEffect(() => {
+  const handleClickDeleteBtn = () => {
     setLoading(true);
     axios
-      .get<IVideo>(`${baseUrl}/${videoId}`)
-      .then((response) => {
-        setTitle(response.data.title);
-        setLoading(false);
-      })
-      .catch((error) => alert("ERror Ocuured"));
-  }, [videoId]);
-
-  const handleClickSaveBtn = () => {
-    if (title === "") {
-      alert("Please Enter Something");
-      return;
-    }
-    const data = {
-      title,
-    };
-
-    axios
-      .post(baseUrl, data)
+      .delete(`${baseUrl}/${videoId}`)
       .then((response) => redirect("/"))
       .catch((error) => alert("Error Ocuured"));
   };
@@ -41,22 +21,21 @@ const DeleteVideo = () => {
   const handleClickBackBtn = () => {
     redirect("/");
   };
+
   return (
-    <div className="edit-video">
-      <h1>Edit Video</h1>
+    <div className="delete-video">
+      <h1>Delete Video</h1>
       {loading ? (
         <h1>Loading...</h1>
       ) : (
         <div className="inputs">
-          <TextField
-            autoComplete="off"
-            label="Video Title"
+          <h3>Are You sure to delete this video?</h3>
+          <Button
             variant="outlined"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <Button variant="outlined" onClick={handleClickSaveBtn}>
-            Save
+            color="error"
+            onClick={handleClickDeleteBtn}
+          >
+            Yes, Delete IT !!!!!
           </Button>
           <Button
             variant="outlined"
