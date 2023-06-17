@@ -1,15 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import "./edit-video.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../../constants/url.constant";
+import { IVideo } from "../../types/global.typing";
 
 const EditVideo = () => {
   const [title, setTitle] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const redirect = useNavigate();
   const { videoId } = useParams();
-  console.log(videoId);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get<IVideo>(`${baseUrl}/${videoId}`)
+      .then((response) => {
+        setTitle(response.data.title);
+        setLoading(false);
+      })
+      .catch((error) => alert("ERror Ocuured"));
+  }, [videoId]);
 
   const handleClickSaveBtn = () => {
     if (title === "") {
