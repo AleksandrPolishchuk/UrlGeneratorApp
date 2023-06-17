@@ -8,8 +8,8 @@ import { baseUrl } from "../../constants/url.constant";
 const EditVideo = () => {
   const [title, setTitle] = useState<string>("");
   const redirect = useNavigate();
-  const params = useParams();
-  console.log(params);
+  const { videoId } = useParams();
+  console.log(videoId);
 
   const handleClickSaveBtn = () => {
     if (title === "") {
