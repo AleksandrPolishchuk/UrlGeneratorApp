@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import "./edit-video.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../../constants/url.constant";
 
 const EditVideo = () => {
   const [title, setTitle] = useState<string>("");
   const redirect = useNavigate();
+  const params = useParams();
+  console.log(params);
 
   const handleClickSaveBtn = () => {
     if (title === "") {
