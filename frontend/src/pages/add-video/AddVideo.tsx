@@ -7,8 +7,8 @@ const AddVideo = () => {
       <h1>Add Video</h1>
       <div className="inputs">
         <TextField autoComplete="off" label="Video Title" variant="outlined" />
-        <Button>Save</Button>
-        <Button>Back To List</Button>
+        <Button variant="outlined">Save</Button>
+        <Button variant="outlined">Back To List</Button>
       </div>
     </div>
   );
