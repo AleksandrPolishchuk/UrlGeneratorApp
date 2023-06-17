@@ -44,25 +44,29 @@ const EditVideo = () => {
   return (
     <div className="edit-video">
       <h1>Edit Video</h1>
-      <div className="inputs">
-        <TextField
-          autoComplete="off"
-          label="Video Title"
-          variant="outlined"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <Button variant="outlined" onClick={handleClickSaveBtn}>
-          Save
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={handleClickBackBtn}
-        >
-          Back To List
-        </Button>
-      </div>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div className="inputs">
+          <TextField
+            autoComplete="off"
+            label="Video Title"
+            variant="outlined"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <Button variant="outlined" onClick={handleClickSaveBtn}>
+            Save
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={handleClickBackBtn}
+          >
+            Back To List
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
